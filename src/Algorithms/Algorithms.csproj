@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigSum.cs" />
+    <Compile Include="DiagonalDifference.cs" />
     <Compile Include="SolveMeFirst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveMeSecond.cs" />
