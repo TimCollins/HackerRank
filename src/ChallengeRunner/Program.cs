@@ -7,7 +7,7 @@ namespace ChallengeRunner
     {
         static void Main(string[] args)
         {
-            DiagonalDifference.SolveIt();
+            PlusMinus.SolveIt();
             ConsoleUtils.WaitForEscape();
         }
     }
