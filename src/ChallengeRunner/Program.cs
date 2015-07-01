@@ -31,7 +31,7 @@ namespace ChallengeRunner
             }
             else
             {
-                fine = 57;    
+                fine = 57;
             }
 
             

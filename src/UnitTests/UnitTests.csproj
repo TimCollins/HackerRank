@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LibraryFineTests.cs" />
+    <Compile Include="MoqExtensions.cs" />
+    <Compile Include="MoqUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
