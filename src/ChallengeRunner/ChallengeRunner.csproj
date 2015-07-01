@@ -52,6 +52,10 @@
       <Project>{91175420-7a44-4450-b2be-bb608d5c387c}</Project>
       <Name>Algorithms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{C76C1FEA-3944-40F5-BF95-F100646D33F2}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{a6ab5aee-59e3-42d8-b49a-85624afe685e}</Project>
       <Name>Utils</Name>
