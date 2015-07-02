@@ -38,16 +38,25 @@ namespace Algorithms
 
             if (actual.Equals(expected) || actual < expected)
             {
-                fine = 0;
+                return  0;
+            }
+
+            int daysDiff = Math.Abs((expected - actual).Days);
+            int yearsDiff = Math.Abs((expected.Year - actual.Year));
+
+            if (yearsDiff > 0)
+            {
+                return 10000;
+            }
+
+            if (daysDiff > 31)
+            {
+                fine = (daysDiff / 30) * 500;
             }
             else
             {
-                int daysDiff = Math.Abs((expected - actual).Days);
                 fine = daysDiff * 15;
             }
-
-
-            int i = 17;
 
             return fine;
         }

@@ -9,7 +9,7 @@ namespace ChallengeRunner
     {
         static void Main(string[] args)
         {
-            new LibraryFine().SolveIt();
+            //new LibraryFine().SolveIt();
 
             string[] actualReturnDate = Console.ReadLine().Split(' ');
             string[] expectedReturnDate = Console.ReadLine().Split(' ');
@@ -22,26 +22,36 @@ namespace ChallengeRunner
 
             int actualYear = Convert.ToInt32(actualReturnDate[2]);
             int expectedYear = Convert.ToInt32(expectedReturnDate[2]);
-            int fine;
-            if ((actualDay == expectedDay) &&
-                (actualMonth == expectedMonth) &&
-                (actualYear == expectedYear))
+
+            DateTime actual = new DateTime(actualYear, actualMonth, actualDay);
+            DateTime expected = new DateTime(expectedYear, expectedMonth, expectedDay);
+
+            if (actual.Equals(expected) || actual < expected)
             {
-                fine = 0;
+                Console.WriteLine(0);
+                return;
+            }
+
+            int daysDiff = Math.Abs((expected - actual).Days);
+            int yearsDiff = Math.Abs((expected.Year - actual.Year));
+
+            if (yearsDiff > 0)
+            {
+                Console.WriteLine(10000);
+                return;
+            }
+
+            int fine;
+            if (daysDiff > 31)
+            {
+                fine = (daysDiff / 30) * 500;
             }
             else
             {
-                fine = 57;
+                fine = daysDiff * 15;
             }
 
-            
-            
             Console.WriteLine(fine);
-            //If the book is returned on or before the expected return date, no fine will be charged, in other words fine is 0.
-            //If the book is returned in the same month as the expected return date, Fine = 15 Hackos × Number of late days
-            //If the book is not returned in the same month but in the same year as the expected return date, Fine = 500 Hackos × Number of late months
-            //If the book is not returned in the same year, the fine is fixed at 10000 Hackos.
-            //TimeConversion.SolveIt();
             ConsoleUtils.WaitForEscape();
         }
     }
