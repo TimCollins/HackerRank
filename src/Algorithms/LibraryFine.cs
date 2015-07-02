@@ -42,7 +42,7 @@ namespace Algorithms
             }
 
             int daysDiff = Math.Abs((expected - actual).Days);
-            int yearsDiff = Math.Abs((expected.Year - actual.Year));
+            int yearsDiff = Math.Abs(expected.Year - actual.Year);
 
             if (yearsDiff > 0)
             {
@@ -51,7 +51,8 @@ namespace Algorithms
 
             if (daysDiff > 31)
             {
-                fine = (daysDiff / 30) * 500;
+                int monthsDiff = Math.Abs(expected.Month - actual.Month);
+                fine = monthsDiff * 500;
             }
             else
             {

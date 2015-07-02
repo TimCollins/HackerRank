@@ -105,18 +105,4 @@ namespace UnitTests
             Assert.AreEqual(1500, result);
         }
     }
-
-
-    internal class TestReader : IConsoleReader
-    {
-        public string ReadLine()
-        {
-            return "1 2 3";
-        }
-
-        public int Read()
-        {
-            return 1;
-        }
-    }
 }
