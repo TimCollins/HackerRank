@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BigSum.cs" />
+    <Compile Include="CaesarCipher.cs" />
     <Compile Include="DiagonalDifference.cs" />
     <Compile Include="LibraryFine.cs" />
     <Compile Include="PlusMinus.cs" />

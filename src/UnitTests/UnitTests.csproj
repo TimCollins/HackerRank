@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaesarCipherTests.cs" />
     <Compile Include="LibraryFineTests.cs" />
     <Compile Include="MoqExtensions.cs" />
     <Compile Include="MoqUtil.cs" />
