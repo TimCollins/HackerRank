@@ -31,13 +31,13 @@ namespace UnitTests
             string[] input =
             {
                 "30",
-                "!\"#$%&'()*+-./:;<=>?`{|}~[\\]^_",
+                "!\"#$%&'()*+-./:;<=>?`{|}~[\\]^_@",
                 "2"
             };
 
             string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
 
-            Assert.AreEqual("!\"#$%&'()*+-./:;<=>?`{|}~[\\]^_", output);
+            Assert.AreEqual("!\"#$%&'()*+-./:;<=>?`{|}~[\\]^_@", output);
         }
 
         [Test]
@@ -68,6 +68,96 @@ namespace UnitTests
             string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
 
             Assert.AreEqual("123456", output);
+        }
+
+        [Test]
+        public void MixedPunctuationWithNumbersAndLettersShouldBeHandled()
+        {
+            string[] input =
+            {
+                "12",
+                "123456abc!£$",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("123456cde!£$", output);
+        }
+
+        [Test]
+        public void PoundAndEuroSignShouldBeHandled()
+        {
+            string[] input =
+            {
+                "4",
+                "£€£€",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("£€£€", output);
+        }
+
+        [Test]
+        public void RotatingLetterShouldWrapAround()
+        {
+            string[] input =
+            {
+                "3",
+                "xyz",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("zab", output);
+        }
+
+        [Test]
+        public void MixOfRotatingLettersNormalLettersNumbersAndPunctuationShouldBeHandled()
+        {
+            string[] input =
+            {
+                "6",
+                "zf11@~",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("bh11@~", output);
+        }
+
+        [Test]
+        public void UpperCaseLettersShouldBeHandled()
+        {
+            string[] input =
+            {
+                "3",
+                "ABC",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("CDE", output);
+        }
+
+        [Test]
+        public void UppercaseRotatingLettersShouldBeHandled()
+        {
+            string[] input =
+            {
+                "3",
+                "XYZ",
+                "2"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("ZAB", output);
         }
 
         [Test]
