@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Policy;
 using Domain.Implementation;
 using Domain.Interfaces;
 
@@ -40,30 +39,17 @@ namespace Algorithms
                     continue;
                 }
 
-                if (Char.IsLower(c))
+                int currentPos = Char.IsLower(c)
+                    ? Array.IndexOf(_lowerCaseAlphabet, c)
+                    : Array.IndexOf(_upperCaseAlphabet, c);
+                int newPos = currentPos + factor;
+
+                if (newPos > _lowerCaseAlphabet.Length - 1)
                 {
-                    int currentPos = Array.IndexOf(_lowerCaseAlphabet, c);
-                    int newPos = currentPos + factor;
-
-                    if (newPos > _lowerCaseAlphabet.Length - 1)
-                    {
-                        newPos = newPos % _lowerCaseAlphabet.Length;
-                    }
-
-                    inputChars[i] = _lowerCaseAlphabet[newPos];
+                    newPos = newPos % _lowerCaseAlphabet.Length;
                 }
-                else
-                {
-                    int currentPos = Array.IndexOf(_upperCaseAlphabet, c);
-                    int newPos = currentPos + factor;
 
-                    if (newPos > _upperCaseAlphabet.Length - 1)
-                    {
-                        newPos = newPos % _upperCaseAlphabet.Length;
-                    }
-
-                    inputChars[i] = _upperCaseAlphabet[newPos];
-                }
+                inputChars[i] = Char.IsLower(c) ? _lowerCaseAlphabet[newPos] : _upperCaseAlphabet[newPos];
             }
 
             return new string(inputChars);

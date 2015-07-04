@@ -8,7 +8,7 @@ namespace ChallengeRunner
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new LibraryFine().SolveIt());
+            Console.WriteLine(new CaesarCipher().SolveIt());
             ConsoleUtils.WaitForEscape();
         }
     }
