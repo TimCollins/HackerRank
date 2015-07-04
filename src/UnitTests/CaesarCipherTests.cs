@@ -161,6 +161,53 @@ namespace UnitTests
         }
 
         [Test]
+        public void SmallFactorShouldBeHandled()
+        {
+            string[] input =
+            {
+                "3",
+                "XXX",
+                "1"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("YYY", output);
+        }
+
+        [Test]
+        public void WrapAroundShouldBeHandled()
+        {
+            string[] input =
+            {
+                "3",
+                "www",
+                "87"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("fff", output);
+        }
+
+        [Test]
+        public void FailingTest1()
+        {
+            string[] input =
+            {
+                "10",
+                "www.abc.xy",
+                // We're not handling a wrap factor which will, in turn, wrap the output off the 
+                // end of the array.
+                "87"
+            };
+
+            string output = new CaesarCipher(MoqUtil.SetupRandMock(input)).SolveIt();
+
+            Assert.AreEqual("fff.jkl.gh", output);
+        }
+
+        [Test]
         public void BasicCipher()
         {
             string[] input =

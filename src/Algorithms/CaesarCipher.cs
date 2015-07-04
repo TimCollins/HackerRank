@@ -11,6 +11,8 @@ namespace Algorithms
         private readonly IConsoleReader _reader;
         private readonly char[] _punctuation = "!\"#£€$%&'()*+'-./:;<=>?`{|}~[\\]^_@".ToCharArray();
         private readonly char[] _numbers = "0123456789".ToCharArray();
+        private readonly char[] _lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+        private readonly char[] _upperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
         public CaesarCipher(IConsoleReader reader)
         {
@@ -38,23 +40,29 @@ namespace Algorithms
                     continue;
                 }
 
-                int pos = (Convert.ToInt32(inputChars[i]));
-                if ((pos > 97 && pos < 123) && (pos + factor > 122))
+                if (Char.IsLower(c))
                 {
-                    // If the letter is within the range for lower-case letters
-                    // and incrementing it would bring it outside
-                    // Then increment to the end and then wrap around.
-                    int wrapFactor = (pos + factor - 123);
-                    inputChars[i] = (char) (Convert.ToInt32('a') + wrapFactor);
-                }
-                else if ((pos > 65 && pos < 91) && (pos + factor > 90))
-                {
-                    int wrapFactor = (pos + factor - 91);
-                    inputChars[i] = (char)(Convert.ToInt32('A') + wrapFactor);
+                    int currentPos = Array.IndexOf(_lowerCaseAlphabet, c);
+                    int newPos = currentPos + factor;
+
+                    if (newPos > _lowerCaseAlphabet.Length - 1)
+                    {
+                        newPos = newPos % _lowerCaseAlphabet.Length;
+                    }
+
+                    inputChars[i] = _lowerCaseAlphabet[newPos];
                 }
                 else
                 {
-                    inputChars[i] = (char)(Convert.ToInt32(inputChars[i]) + factor);    
+                    int currentPos = Array.IndexOf(_upperCaseAlphabet, c);
+                    int newPos = currentPos + factor;
+
+                    if (newPos > _upperCaseAlphabet.Length - 1)
+                    {
+                        newPos = newPos % _upperCaseAlphabet.Length;
+                    }
+
+                    inputChars[i] = _upperCaseAlphabet[newPos];
                 }
             }
 
